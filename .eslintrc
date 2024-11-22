@@ -12,5 +12,10 @@ globals:
   noUiSlider: readonly
   Pristine: readonly
 
+rules:
+  quotes: [1, "double", "avoid-escape"]
+  no-unused-vars: warn
+  no-console: warn
+
 extends:
   "htmlacademy/vanilla"

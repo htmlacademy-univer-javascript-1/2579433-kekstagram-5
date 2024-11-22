@@ -1,17 +1,16 @@
-(lengthCheck = function(str, size){
+lengthCheck = function(str, size){
   return (str.length <= parseInt(size));
 },
 isPalindrom = function(str){
-  return(str === str.split('').reverse().join(''));
+  return(str.toLowerCase() === str.toLowerCase().split('').reverse().join(''));
 },
 findDigits = function(str){
   const r = /\d+/g;
   let result = '';
-  str.split('').forEach(element => {
+  str.toString().split('').forEach(element => {
     if(element.match(r) != null){
       result += element;
     };
   });
-  return result;
+  return (result === '') ? NaN : parseInt(result);
 }
-)
