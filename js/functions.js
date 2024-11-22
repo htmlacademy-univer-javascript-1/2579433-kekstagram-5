@@ -1,10 +1,10 @@
-var lengthCheck = function(str, size){
+const lengthCheck = function(str, size){
   return str.length <= parseInt(size, 10);
-}
-var isPalindrom = function(str){
+};
+const isPalindrom = function(str){
   return(str.toLowerCase() === str.toLowerCase().split('').reverse().join(''));
-}
-var findDigits = function(str){
+};
+const findDigits = function(str){
   const r = /\d+/g;
   let result = '';
   str.toString().split('').forEach((element) => {
@@ -13,4 +13,4 @@ var findDigits = function(str){
     }
   });
   return (result === '') ? NaN : parseInt(result, 10);
-}
+};
