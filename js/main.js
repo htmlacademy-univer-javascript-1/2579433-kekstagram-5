@@ -2,6 +2,10 @@ const uid = function(){
   return Date.now();
 };
 
+const generateRandom = function(min, max){
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
 const createComment = function(){
   const messages = [
     "Всё отлично!",
@@ -16,14 +20,14 @@ const createComment = function(){
 
   return {
     id: uid(),
-    avatar: `img/avatar-${Math.floor((Math.random() * 10) % 7)}.svg`,
-    message: messages[Math.floor((Math.random() * 10) % 6)] + messages[Math.floor((Math.random() * 10) % 6)],
-    name: names[Math.floor((Math.random() * 100) % names.length)],
+    avatar: `img/avatar-${generateRandom(0, 7)}.svg`,
+    message: messages[generateRandom(6)] + messages[generateRandom(6)],
+    name: names[generateRandom(0, names.length)],
   };
 };
 
 const generateComments = function(){
-  const max = Math.floor((Math.random() * 100) % 31);
+  const max = generateRandom(0, 30);
   const comments = [];
   for(let i = 0; i < max; i++){
     comments.push(createComment());
@@ -36,8 +40,8 @@ const createPost = function(id, url){
   return {
     id: id,
     url: `photos/${url}.jpg`,
-    description: descriptions[Math.floor((Math.random() * 10) % descriptions.length)],
-    likes: Math.floor((Math.random() * 1000) % (200 - 15) + 15),
+    description: descriptions[generateRandom(0, descriptions.length)],
+    likes: Math.floor(generateRandom(15, 200)),
     comments: generateComments(),
   };
 };
