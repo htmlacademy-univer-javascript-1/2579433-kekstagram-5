@@ -21,7 +21,7 @@ const createComment = function(){
   return {
     id: uid(),
     avatar: `img/avatar-${generateRandom(0, 7)}.svg`,
-    message: messages[generateRandom(6)] + messages[generateRandom(6)],
+    message: messages[generateRandom(0, 6)] + messages[generateRandom(0, 6)],
     name: names[generateRandom(0, names.length)],
   };
 };
