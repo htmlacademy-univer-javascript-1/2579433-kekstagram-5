@@ -35,20 +35,20 @@ const generateComments = function(){
   return comments;
 };
 
-const createPost = function(id, url){
+const createPost = function(id){
   const descriptions = ["Hope eradicated", "Meat automaton", "Divine light", "Power in misery", "CEO mindset", "Funny pills"];
   return {
     id: id,
-    url: `photos/${url}.jpg`,
+    url: `photos/${id}.jpg`,
     description: descriptions[generateRandom(0, descriptions.length)],
-    likes: Math.floor(generateRandom(15, 200)),
+    likes: generateRandom(15, 200),
     comments: generateComments(),
   };
 };
 
 const constructTask = function(){
   for(let i = 1; i <= 25; i++){
-    const post = createPost(i, i);
+    const post = createPost(i);
     console.log(post);
     console.log(post.comments);
   }
