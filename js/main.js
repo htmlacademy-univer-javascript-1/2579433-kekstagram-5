@@ -1,9 +1,8 @@
-import { createPost } from "./tempObjectCreation.js";
+import { createPictures } from "./pictures.js";
+import { setupFullScreen } from "./fullscreen.js";
+import { lengthCheck, isPalindrom, findDigits } from "./functions.js";
 
-const constructTask = function(){
-  for(let i = 1; i <= 25; i++){
-    const post = createPost(i);
-    console.log(post);
-    console.log(post.comments);
-  }
-};
+document.addEventListener("DOMContentLoaded", () => {
+  createPictures();
+  setupFullScreen();
+});

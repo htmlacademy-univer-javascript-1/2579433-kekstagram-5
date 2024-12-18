@@ -1,10 +1,10 @@
-const lengthCheck = function(str, size){
+export const lengthCheck = function(str, size){
   return str.length <= parseInt(size, 10);
 };
-const isPalindrom = function(str){
+export const isPalindrom = function(str){
   return(str.toLowerCase() === str.toLowerCase().split("").reverse().join(""));
 };
-const findDigits = function(str){
+export const findDigits = function(str){
   const r = /\d+/g;
   let result = "";
   str.toString().split("").forEach((element) => {
