@@ -1,9 +1,10 @@
 export function setupFullScreen(){
   const frame = document.querySelector(".big-picture");
   const gallery = document.querySelector(".pictures");
-  const commentTemplate = frame.querySelector(".social__comment").cloneNode(true); // Шаблон комментария
+  const commentTemplate = frame.querySelector(".social__comment").cloneNode(true);
   const commentsLoader = frame.querySelector(".comments-loader");
   const commentCountBlock = frame.querySelector(".social__comment-count");
+  const commentsContainer = frame.querySelector(".social__comments");
 
   let totalComments = 0;
   let shownComments = 0;
@@ -29,9 +30,9 @@ export function setupFullScreen(){
       frame.querySelector(".comments-count").textContent = element.querySelector(".picture__comments").textContent;
       frame.querySelector(".social__caption").textContent = element.querySelector("img").alt;
 
+      commentsContainer.innerHTML = "";
       totalComments = parseInt(element.querySelector(".picture__comments").textContent, 10);
       shownComments = 0;
-      frame.querySelector(".social__comments").innerHTML = "";
       commentCountBlock.classList.remove("hidden");
       commentsLoader.classList.remove("hidden");
 
@@ -46,7 +47,6 @@ export function setupFullScreen(){
   }
 
   function loadComments() {
-    const commentsContainer = frame.querySelector(".social__comments");
     const commentsFragment = document.createDocumentFragment();
     const commentsToLoad = Math.min(5, totalComments - shownComments);
 
@@ -58,10 +58,8 @@ export function setupFullScreen(){
     commentsContainer.appendChild(commentsFragment);
     shownComments += commentsToLoad;
 
-    // Обновление счётчика комментариев
     commentCountBlock.textContent = `${shownComments} из ${totalComments} комментариев`;
 
-    // Скрытие кнопки загрузки, если все комментарии показаны
     if (shownComments >= totalComments) {
       commentsLoader.classList.add("hidden");
     }
