@@ -11,7 +11,6 @@ export function setupFullScreen(){
 
   gallery.addEventListener("click", showFrame);
   frame.querySelector("#picture-cancel").addEventListener("click", closeFrame);
-  commentsLoader.addEventListener("click", loadComments);
   document.addEventListener("keydown", (evt) => {
     if(evt.key === "Escape" && !frame.classList.contains("hidden")) {
       closeFrame(evt);
@@ -37,11 +36,12 @@ export function setupFullScreen(){
       commentsLoader.classList.remove("hidden");
 
       loadComments();
+      commentsLoader.addEventListener("click", loadComments);
     }
   }
 
   function closeFrame(){
-    document.querySelector("body").classList.remove("modal-open");
+    document.body.classList.remove("modal-open");
     frame.classList.add("hidden");
     commentsLoader.removeEventListener("click", loadComments);
   }
@@ -58,7 +58,7 @@ export function setupFullScreen(){
     commentsContainer.appendChild(commentsFragment);
     shownComments += commentsToLoad;
 
-    commentCountBlock.textContent = `${shownComments} из ${totalComments} комментариев`;
+    commentCountBlock.innerHTML = `<span class="comments-count">${shownComments}</span> из ${totalComments} комментариев`;
 
     if (shownComments >= totalComments) {
       commentsLoader.classList.add("hidden");
