@@ -1,3 +1,5 @@
+import { sendPhoto } from "./API";
+
 const uploadForm = document.querySelector("#upload-select-image");
 
 const openForm = () => {
@@ -78,22 +80,14 @@ const showErrorMessage = () => {
 uploadForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   const isValid = pristine.validate();
-
   if (isValid) {
     uploadForm.querySelector(".img-upload__submit").disabled = true;
     const formData = new FormData(uploadForm);
-    try {
-      const response = await fetch(uploadForm.action, {
-        method: "POST",
-        body: formData,
-      });
 
-      if (response.ok) {
-        showSuccessMessage();
-        closeForm();
-      } else {
-        showErrorMessage();
-      }
+    try {
+      await sendPhoto(formData);
+      showSuccessMessage();
+      closeForm();
     } catch (error) {
       showErrorMessage();
     } finally {
@@ -101,6 +95,7 @@ uploadForm.addEventListener("submit", async (event) => {
     }
   }
 });
+
 
 const previewImage = uploadForm.querySelector(".img-upload__preview img");
 const scaleValue = uploadForm.querySelector(".scale__control--value");
